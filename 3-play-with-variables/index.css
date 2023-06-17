@@ -1,0 +1,61 @@
+:root {
+  --color: #404263;
+  --space: 1rem;
+  --blur: 1;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(66, 67, 82);
+  font-size: 1.5rem;
+}
+
+.head {
+    color: white;
+}
+
+section {
+  width: 90%;
+  max-width: 1200px;
+  margin-inline: auto;
+  min-height: 100vh;
+}
+
+.box {
+    background-color: var(--color);
+    margin: var(--space);
+    color:  rgb(219, 220, 245);
+  opacity: var(--blur);
+}
+
+
+section > * {
+  margin-top: 6rem;
+}
+
+section h1,
+h2 {
+  font-family: Courier, monospace;
+  display: inline-block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+section h1 {
+  font-size: 3rem;
+  display: block;
+-blur: 0.7;
+}
+
+.inputs > * {
+  display: inline-block;
+  margin: 1rem 2rem;
+}
