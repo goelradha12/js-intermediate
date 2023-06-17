@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+  const Speed = document.querySelector('.speed');
+  const speed_bar = document.querySelector('.speed-bar');
+  const video = document.querySelector('.flex');
+
+  function handleMove(e) 
+  {
+    //  hamnne dekha ki hamara cursor kahan h 
+    const min = 0.4;
+    const max = 4;
+    let height = Speed.offsetHeight;
+    let place = e.pageY - Speed.offsetTop;
+    const value = (place/height *(max-min))+0.4;
+    let percent = Math.round(place/ height * 100)+ '%';
+    
+    // us hisab se percent nikal liya, complete bar ke hight ke according
+    // console.log(percent);
+    // height of bar is changing accordingly
+    speed_bar.style.height = percent;
+    video.playbackRate = value;
+    speed_bar.textContent = value.toFixed(2) + 'x';
+  }
+
+  // Speed.addEventListener('click', ha)
+  Speed.addEventListener('mousemove', handleMove);
+</script>
+</body>
+</html>
