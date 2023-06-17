@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whack A Mole!</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+  <h1>Whack-a-mole! <span class="score">0</span></h1>
+  <div class="forButtons">
+    <button onClick="startGame()">Start!</button>
+    <button onclick="stopGame()">Stop!</button>
+  </div>
+
+  <div class="game">
+    <div class="hole hole1">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole2">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole3">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole4">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole5">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole6">
+      <div class="mole"></div>
+    </div>
+  </div>
+
+<script>
+  const holes = document.querySelectorAll('.hole');
+  const scoreBoard = document.querySelector('.score');
+  const moles = document.querySelectorAll('.mole');
+  let selected;
+  let score = 0;
+  let isStart = false;
+  function getRandomTime(min, max) {
+    const time = Math.floor(Math.random() *(max-min) + min);
+    return time;
+  }
+
+  function getRandomHoles(holes)
+  {
+    const randomHole = Math.floor(Math.random()*holes.length);
+    // console.log(holes[randomHole]);
+    if(selected===randomHole) return getRandomHoles(holes);
+
+    selected = randomHole;
+    return holes[randomHole];
+  }
+
+  function peep() {
+    const hole = getRandomHoles(holes);
+    const time = getRandomTime(200,3000);
+    hole.classList.add('up');
+    // console.log(hole);
+    setTimeout(()=>
+    {hole.classList.remove('up');
+    if(isStart===true)    peep();
+  },time);
+    
+  }
+
+  function startGame(){
+    isStart = true;
+    score = 0;
+    peep();
+  }
+
+  function stopGame(){
+    isStart = false;
+  }
+
+  moles.forEach(mole=>{
+    mole.addEventListener('click',function(e){
+      if(e.isTrusted===false)
+      alert("error! you are cheating!");
+      else
+      score++;
+      scoreBoard.textContent = score;
+      // console.log(score);
+    });
+  })
+  // console.log(getRandomHoles(holes));
+  
+</script>
+</body>
+</html>
